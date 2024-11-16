@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Medical_appointments;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use \App\Models\User;
 
 class MedicalAppointmentsController extends Controller
@@ -14,10 +15,11 @@ class MedicalAppointmentsController extends Controller
     public function index()
     {
         //
-        $datos = Medical_appointments::orderBy('illness', 'desc')->paginate(10);
-        $user = User::find(auth()->id());
-        $user_name = $user ? $user->name : 'User not found';
-        return view('medical-appointments', compact('datos','user_name'));
+        $datos = Medical_appointments::where('user_id', Auth::id())
+                                      ->orderBy('illness', 'desc')
+                                      ->paginate(10);;
+        
+        return view('medical-appointments', compact('datos'));
     }
 
     /**

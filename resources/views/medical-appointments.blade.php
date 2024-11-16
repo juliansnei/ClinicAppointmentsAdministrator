@@ -14,12 +14,14 @@
     <div class="card">
         <h5 class="card-header">Patient Medical appointments</h5>
         <div class="card-body">
-          <h5 class="card-title">List</h5>
+          <h5 class="card-title">Medical appointments Lists</h5>
+          <p>
+            <a href="{{ route('medical-appointments.create') }}" class="btn btn-primary">Asigned Appointment</a>
+          </p>
           <p class="card-text">
             <div class="table table-responsive">
                 <table class="table table-sm table-bordered">
                     <thead>
-                        <th>User</th>
                         <th>Illment</th>
                         <th>Comment</th>
                         <th>Appointment Date</th>
@@ -27,7 +29,6 @@
                     <tbody>
                     @foreach ($datos as $item)
                         <tr>
-                            <td></td>
                             <td>{{ $item->illness }}</td>
                             <td>{{ $item->comment }}</td>
                             <td>{{ $item->appointment_date }}</td>
